@@ -19,6 +19,14 @@ class User extends Model {
     });
   }
 
+  /**
+ * Oculta os campos definidos no retorno, das queire
+ *
+ */
+  static get hidden() {
+    return ['passwoe'];
+  }
+
   static get traits() {
     return [
       '@provider:Adonis/Acl/HasRole',
@@ -36,8 +44,17 @@ class User extends Model {
    *
    * @return {Object}
    */
+
   tokens() {
     return this.hasMany('App/Models/Token');
+  }
+
+  image() {
+    return this.belongsTo('App/Models/Image');
+  }
+
+  coupons() {
+    return this.belongsToMany('App/Model/Coupons');
   }
 }
 
