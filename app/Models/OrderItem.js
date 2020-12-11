@@ -2,6 +2,12 @@
 const Model = use('Model');
 
 class OrderItem extends Model {
+  static boot() {
+    super.boot();
+
+    this.addHook('beforeSava', 'OrderItemHook.updateSubtotal');
+  }
+
   product() {
     return this.belongsTo('App/Models/Product');
   }
